@@ -1,26 +1,98 @@
 {
   "domain": "modular-house",
-  "version": 1,
+  "version": 2,
   "facts": [
     "折叠房可收拢到标准集装箱尺寸并快速展开",
     "县域已形成钢板、焊接、内装和水电预装的本地链条",
-    "企业通过跨境平台和海外服务站拓展五十多个国家和地区"
+    "企业通过跨境平台和海外服务站拓展五十多个国家和地区",
+    "阜城装配式房屋协会组织成员企业在同一项目下共同维护交付资料"
   ],
   "entities": [
+    "项目",
+    "短视频询盘",
     "客户需求",
+    "确认配置",
+    "报价",
     "设计版本",
+    "国家适配版本",
+    "部件来源",
+    "检测证书",
     "生产模块",
+    "生产节点",
+    "容量锁定",
     "装箱单元",
-    "安装验收"
+    "装运批次",
+    "清关材料",
+    "交接记录",
+    "海外服务站",
+    "安装验收",
+    "客户视图"
   ],
   "rules": [
     "国家适配必须形成独立合规版本",
-    "投产后设计变化不得覆盖旧批次",
+    "短视频询盘须转为双方确认的配置后方可进入生产",
+    "投产后设计变化不得覆盖旧批次，已投产模块继续服从原设计",
+    "扫描任一箱号必须能定位户型版本、检测证书、生产企业与缺件联系人",
+    "多企业容量锁定与分批装运必须保持数量守恒",
+    "海运延误、服务站接管、补发与售后责任变更只能追加交接记录，不得改写历史",
+    "多语种客户视图不得展示尚未确认的承诺",
     "海外伙伴只查看其负责范围"
   ],
   "sample": {
     "record_id": "demo-012",
     "status": "已登记",
-    "source": "公开示例"
+    "source": "公开示例",
+    "project_id": "PRJ-DEMO-001",
+    "inquiry_id": "INQ-DEMO-001",
+    "confirmed_config_id": "CFG-DEMO-003",
+    "quote_id": "QTO-DEMO-002",
+    "country_adaptation": "ADP-DEMO-V2",
+    "component_sources": [
+      "SRC-DEMO-STEEL-01",
+      "SRC-DEMO-MEP-01"
+    ],
+    "production_milestones": [
+      "MS-DEMO-01",
+      "MS-DEMO-02"
+    ],
+    "box_no": "BOX-DEMO-0001",
+    "layout_version": "LAY-DEMO-V3",
+    "certificates": [
+      "CERT-DEMO-FIRE-01",
+      "CERT-DEMO-SEISMIC-01"
+    ],
+    "manufacturer": "示例成员企业甲",
+    "service_contact": "示例海外服务站A",
+    "capacity_lock": {
+      "locked_boxes": 3,
+      "enterprises": [
+        "示例成员企业甲",
+        "示例成员企业乙"
+      ]
+    },
+    "shipments": [
+      {
+        "batch_no": "SHP-DEMO-01",
+        "boxes": 2
+      },
+      {
+        "batch_no": "SHP-DEMO-02",
+        "boxes": 1
+      }
+    ],
+    "customs_doc": "CUS-DEMO-001",
+    "handovers": [
+      {
+        "seq": 1,
+        "type": "海运延误",
+        "note": "示例：船期顺延，预计晚到七天"
+      },
+      {
+        "seq": 2,
+        "type": "服务站接管",
+        "note": "示例：到港后由示例海外服务站A接管"
+      }
+    ],
+    "acceptance_id": "ACC-DEMO-001"
   }
 }
