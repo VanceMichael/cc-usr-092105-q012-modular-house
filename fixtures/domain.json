@@ -1,26 +1,295 @@
 {
   "domain": "modular-house",
-  "version": 1,
+  "version": 2,
   "facts": [
     "折叠房可收拢到标准集装箱尺寸并快速展开",
     "县域已形成钢板、焊接、内装和水电预装的本地链条",
-    "企业通过跨境平台和海外服务站拓展五十多个国家和地区"
+    "企业通过跨境平台和海外服务站拓展五十多个国家和地区",
+    "协会成员企业在同一项目下共享交付资料，海外安装队扫描箱号即可追溯部件、证书与责任"
   ],
   "entities": [
+    "项目",
     "客户需求",
+    "确认配置",
+    "报价",
     "设计版本",
+    "国家适配版本",
+    "部件来源",
+    "检测证书",
     "生产模块",
+    "生产节点",
+    "容量锁定",
     "装箱单元",
-    "安装验收"
+    "装运批次",
+    "清关材料",
+    "交接记录",
+    "安装验收",
+    "客户视图"
   ],
   "rules": [
+    "短视频询盘只有转成双方确认的配置才进入生产",
     "国家适配必须形成独立合规版本",
-    "投产后设计变化不得覆盖旧批次",
-    "海外伙伴只查看其负责范围"
+    "已投产模块继续服从原设计，设计变更不得覆盖旧批次",
+    "多企业容量锁定和分批装运保持数量守恒",
+    "海运延误、服务站接管、补发和售后责任变更均追加交接记录，不改写历史",
+    "多语种客户视图不得提前展示尚未确认的承诺",
+    "海外伙伴只查看其负责范围",
+    "任一箱号必须能追溯部件对应的户型版本、检测证书、生产者与缺件联系人"
   ],
   "sample": {
-    "record_id": "demo-012",
-    "status": "已登记",
-    "source": "公开示例"
+    "project": {
+      "project_id": "PRJ-DEMO-001",
+      "title": "示例国折叠箱房交付项目（虚构样例）",
+      "destination_country": "示例国",
+      "members": [
+        "示例钢构企业",
+        "示例水电配套企业",
+        "示例海外服务站"
+      ]
+    },
+    "inquiries": [
+      {
+        "inquiry_id": "INQ-DEMO-001",
+        "channel": "短视频询盘",
+        "status": "已转确认配置",
+        "configuration_id": "CFG-DEMO-001"
+      },
+      {
+        "inquiry_id": "INQ-DEMO-002",
+        "channel": "短视频询盘",
+        "status": "待双方确认",
+        "configuration_id": null
+      }
+    ],
+    "configurations": [
+      {
+        "configuration_id": "CFG-DEMO-001",
+        "inquiry_id": "INQ-DEMO-001",
+        "status": "双方确认",
+        "confirmed_by": [
+          "客户代表（示例）",
+          "生产企业代表（示例）"
+        ],
+        "quote_id": "QTO-DEMO-001",
+        "design_version_id": "DV-DEMO-004",
+        "adaptation_version_id": "ADP-DEMO-004"
+      }
+    ],
+    "quotes": [
+      {
+        "quote_id": "QTO-DEMO-001",
+        "configuration_id": "CFG-DEMO-001",
+        "currency": "USD",
+        "note": "金额仅示意，不含真实报价"
+      }
+    ],
+    "design_versions": [
+      {
+        "design_version_id": "DV-DEMO-004",
+        "floor_plan": "两室一厅折叠户型（示例）",
+        "status": "已投产冻结"
+      },
+      {
+        "design_version_id": "DV-DEMO-005",
+        "floor_plan": "两室一厅折叠户型改款（示例）",
+        "status": "未投产批次适用"
+      }
+    ],
+    "adaptation_versions": [
+      {
+        "adaptation_version_id": "ADP-DEMO-004",
+        "base_design_version_id": "DV-DEMO-004",
+        "country": "示例国",
+        "compliance": [
+          "防火示例标准",
+          "抗震示例标准"
+        ]
+      }
+    ],
+    "part_sources": [
+      {
+        "part_group": "钢架",
+        "supplier": "示例钢构企业"
+      },
+      {
+        "part_group": "水电",
+        "supplier": "示例水电配套企业"
+      },
+      {
+        "part_group": "水电备件",
+        "supplier": "示例水电配套企业"
+      }
+    ],
+    "certificates": [
+      {
+        "certificate_id": "CERT-DEMO-F1",
+        "kind": "防火",
+        "standard": "防火示例标准",
+        "issuer": "示例检测机构",
+        "adaptation_version_id": "ADP-DEMO-004"
+      },
+      {
+        "certificate_id": "CERT-DEMO-K1",
+        "kind": "抗震",
+        "standard": "抗震示例标准",
+        "issuer": "示例检测机构",
+        "adaptation_version_id": "ADP-DEMO-004"
+      }
+    ],
+    "modules": [
+      {
+        "module_id": "MOD-DEMO-01",
+        "configuration_id": "CFG-DEMO-001",
+        "design_version_id": "DV-DEMO-004",
+        "producer": "示例钢构企业",
+        "milestones": [
+          { "node": "钢架焊接", "state": "完成" },
+          { "node": "水电预装", "state": "完成" },
+          { "node": "内装", "state": "完成" }
+        ]
+      },
+      {
+        "module_id": "MOD-DEMO-02",
+        "configuration_id": "CFG-DEMO-001",
+        "design_version_id": "DV-DEMO-004",
+        "producer": "示例钢构企业",
+        "milestones": [
+          { "node": "钢架焊接", "state": "完成" },
+          { "node": "水电预装", "state": "完成" },
+          { "node": "内装", "state": "完成" }
+        ]
+      },
+      {
+        "module_id": "MOD-DEMO-03",
+        "configuration_id": "CFG-DEMO-001",
+        "design_version_id": "DV-DEMO-004",
+        "producer": "示例水电配套企业",
+        "milestones": [
+          { "node": "钢架焊接", "state": "完成" },
+          { "node": "水电预装", "state": "完成" },
+          { "node": "内装", "state": "完成" }
+        ]
+      }
+    ],
+    "capacity_locks": [
+      {
+        "lock_id": "CAP-DEMO-01",
+        "company": "示例钢构企业",
+        "quantity": 2
+      },
+      {
+        "lock_id": "CAP-DEMO-02",
+        "company": "示例水电配套企业",
+        "quantity": 1
+      }
+    ],
+    "boxes": [
+      {
+        "box_id": "BOX-DEMO-0001",
+        "module_id": "MOD-DEMO-01",
+        "contents": ["钢架", "水电"]
+      },
+      {
+        "box_id": "BOX-DEMO-0002",
+        "module_id": "MOD-DEMO-02",
+        "contents": ["钢架", "水电"]
+      },
+      {
+        "box_id": "BOX-DEMO-0003",
+        "module_id": "MOD-DEMO-03",
+        "contents": ["钢架", "水电"]
+      },
+      {
+        "box_id": "BOX-DEMO-0004",
+        "module_id": "MOD-DEMO-03",
+        "contents": ["水电备件"]
+      }
+    ],
+    "shipments": [
+      {
+        "shipment_id": "SHP-DEMO-01",
+        "sequence": 1,
+        "box_ids": ["BOX-DEMO-0001", "BOX-DEMO-0002"],
+        "state": "已到港"
+      },
+      {
+        "shipment_id": "SHP-DEMO-02",
+        "sequence": 2,
+        "box_ids": ["BOX-DEMO-0003", "BOX-DEMO-0004"],
+        "state": "海运中"
+      }
+    ],
+    "customs_documents": [
+      {
+        "document_id": "CUS-DEMO-01",
+        "shipment_id": "SHP-DEMO-01",
+        "kind": "装箱单与发票（示例）"
+      },
+      {
+        "document_id": "CUS-DEMO-02",
+        "shipment_id": "SHP-DEMO-02",
+        "kind": "装箱单与证书副本（示例）"
+      }
+    ],
+    "handovers": [
+      {
+        "handover_id": "HND-DEMO-01",
+        "kind": "海运延误",
+        "at": "2026-06-02",
+        "shipment_id": "SHP-DEMO-02",
+        "note": "第二批海运延误，到港顺延"
+      },
+      {
+        "handover_id": "HND-DEMO-02",
+        "kind": "服务站接管",
+        "at": "2026-06-10",
+        "box_ids": ["BOX-DEMO-0001", "BOX-DEMO-0002"],
+        "to_party": "示例海外服务站",
+        "note": "首批到港，现场支持移交服务站"
+      },
+      {
+        "handover_id": "HND-DEMO-03",
+        "kind": "补发",
+        "at": "2026-06-18",
+        "box_ids": ["BOX-DEMO-0004"],
+        "note": "水电备件随补发批次发出"
+      },
+      {
+        "handover_id": "HND-DEMO-04",
+        "kind": "售后责任变更",
+        "at": "2026-07-01",
+        "to_party": "示例海外服务站",
+        "note": "售后责任整体移交服务站"
+      }
+    ],
+    "acceptances": [
+      {
+        "acceptance_id": "ACC-DEMO-01",
+        "box_id": "BOX-DEMO-0001",
+        "result": "展开验收通过",
+        "items": ["展开到位", "锁固", "水电连通"]
+      }
+    ],
+    "customer_view": {
+      "languages": ["zh", "en"],
+      "entries": [
+        {
+          "key": "户型版本",
+          "source_id": "DV-DEMO-004",
+          "confirmed": true
+        },
+        {
+          "key": "交付批次",
+          "source_id": "CFG-DEMO-001",
+          "confirmed": true
+        }
+      ],
+      "withheld": [
+        {
+          "key": "口头承诺的提前交期",
+          "reason": "未经双方确认，不展示"
+        }
+      ]
+    }
   }
 }

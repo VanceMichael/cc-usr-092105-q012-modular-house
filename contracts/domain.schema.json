@@ -41,7 +41,25 @@
       }
     },
     "sample": {
-      "type": "object"
+      "type": "object",
+      "required": [
+        "project",
+        "inquiries",
+        "configurations",
+        "quotes",
+        "design_versions",
+        "adaptation_versions",
+        "part_sources",
+        "certificates",
+        "modules",
+        "capacity_locks",
+        "boxes",
+        "shipments",
+        "customs_documents",
+        "handovers",
+        "acceptances",
+        "customer_view"
+      ]
     }
   },
   "additionalProperties": false
